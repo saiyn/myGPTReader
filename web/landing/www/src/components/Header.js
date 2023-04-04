@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { umamiEvent, gtagEvent } from "../util";
 
 const Header = () => {
   const scrollToFeatures = () => {
@@ -15,6 +16,13 @@ const Header = () => {
       behavior: "smooth",
     });
   };
+
+  const goToGitHub = () => {
+    const referrer = document.referrer;
+    umamiEvent("GitHubFromMenu", { referrer })
+    gtagEvent("GitHubFromMenu")
+    window.location.href = "https://github.com/madawei2699/myGPTReader";
+  }
 
   return (
     <header className="bg-white shadow">
@@ -39,9 +47,8 @@ const Header = () => {
             Pricing
           </Link>
           <a
-            href="https://github.com/madawei2699/myGPTReader"
-            rel="noreferrer"
-            target="_blank"
+            href="#"
+            onClick={goToGitHub}
             className="github-link ml-4 flex items-center justify-center w-10 h-10 rounded-full bg-gray-800 text-white font-semibold shadow-md hover:bg-gray-700 focus:outline-none focus:bg-gray-700"
           >
             <svg
